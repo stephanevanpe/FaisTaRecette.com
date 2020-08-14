@@ -23,7 +23,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{path("aliments")}}">aliments</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{path("admin_aliment")}}">administration</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="dropdown-item" href="{{path("admin_aliment")}}">administration</a>
+                            {% endif %}
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -33,18 +35,23 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{path("types")}}">types</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{path("types")}}">administration</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="dropdown-item" href="{{path("types")}}">administration</a>
+                            {% endif %}
                         </div>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href='{{path("inscription")}}'>Inscription</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href='{{path("connexion")}}'>Login</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href='{{path("deconnexion")}}'>Deconnexion</a>
-                    </li>
+                    {% if not app.user %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href='{{path("inscription")}}'>Inscription</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href='{{path("connexion")}}'>Login</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href='{{path("deconnexion")}}'>Deconnexion</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
