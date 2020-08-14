@@ -33,4 +33,17 @@ class AdminSecuController extends AbstractController
             "form" => $form -> createView()
         ]);
     }
+    /**
+     * @Route("/login", name="connexion")
+     */
+    public function login(){
+        return $this->render("admin_secu/login.html.twig");
+    }
+    /**
+     * @Route("/deconnexion", name="deconnexion")
+     */
+    public function deconnexion()
+    {
+       
+    }
 }
